@@ -4,7 +4,7 @@ import { useState } from "react";
 import { getTopHolders } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BarChart3, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 interface Holder {
   address: string;
@@ -25,7 +25,7 @@ export default function TopHolders() {
     try {
       const data = await getTopHolders(contractAddress);
       setHolders(data);
-    } catch (err) {
+    } catch {
       setError(
         "Failed to fetch holders. Please check the contract address and try again."
       );
@@ -40,10 +40,6 @@ export default function TopHolders() {
         <h2 className="text-xl font-semibold text-gray-100">
           Holder distribution
         </h2>
-        {/* <Button variant="secondary" size="sm" className="text-sm">
-          <BarChart3 className="w-4 h-4 mr-2" />
-          generate bubble map
-        </Button> */}
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-2">
